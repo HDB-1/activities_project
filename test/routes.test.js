@@ -123,4 +123,39 @@ describe('API Routes', function() {
       });
     });
   });
+
+  describe('DELETE /api/v1/cities/:id', function() {
+    it('should delete a show', function(done) {
+      chai.request(server)
+      .delete('/api/v1/cities/1')
+      .end(function(error, res) {
+        res.should.be.json; // jshint ignore:line
+        res.body.should.be.a('object');
+        res.body.should.have.property('city');
+        res.body.city.should.equal('London');
+        res.body.should.have.property('country');
+        res.body.country.should.equal('UK');
+        res.body.should.have.property('activities');
+        res.body.activities[0].should.equal('Watch Premier League football');
+        res.body.should.have.property('places');
+        res.body.places[0].should.equal('London Eye');
+        chai.request(server)
+        .get('/api/v1/cities')
+        .end(function(err, response) {
+          response.should.be.json; // jshint ignore:line
+          response.body.should.be.a('array');
+          response.body.length.should.equal(2);
+          response.body[0].should.have.property('city');
+          response.body[0].city.should.equal('Paris');
+          response.body[0].should.have.property('country');
+          response.body[0].country.should.equal('France');
+          response.body[0].should.have.property('activities');
+          response.body[0].activities[0].should.equal('Le Ballon de Paris');
+          response.body[0].should.have.property('places');
+          response.body[0].places[0].should.equal('Eiffel Tower');
+          done();
+        });
+      });
+    });
+  });
 });
