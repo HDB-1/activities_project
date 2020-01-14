@@ -1,19 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
+const queries = require('../db/queries');
+
+// router.get('/cities', (req, res) => {
+//     knex.select()
+//     .from('cities')
+//     .then((response) => {
+//         console.log(response)
+//         res.send(response)
+//     })
+// })
 
 router.get('/cities', (req, res) => {
-    knex.select()
-    .from('cities')
-    .then((response) => {
-        console.log(response)
-        res.send(response)
+    queries.getAll()
+    .then(function(shows) {
+      res.status(200).json(shows);
     })
-})
+    .catch(function(error) {
+      next(error);
+    });
+  });
 
-router.get('/cities/:id', (req, res) => {
-
-})
+  router.get('/cities/:id', (req, res) => {
+    queries.getSingle(req.params.id)
+    .then(function(cities) {
+      res.status(200).json(cities);
+    })
+    .catch(function(error) {
+      next(error);
+    });
+  });
 
 router.get('/citiessearch', (req, res) => {
     knex.select()

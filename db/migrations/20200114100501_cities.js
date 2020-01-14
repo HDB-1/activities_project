@@ -3,7 +3,7 @@ exports.up = function(knex) {
       t.increments();
       t.string('city').notNullable();
       t.string('country').notNullable();
-      t.string('activities').notNullable();
+      t.specificType('activities', 'text ARRAY');
       t.specificType('places', 'text ARRAY');
     });
   };
