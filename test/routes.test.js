@@ -74,4 +74,30 @@ describe('API Routes', function() {
     });
   });
 
+  describe('POST /api/v1/cities', function() {
+    it('should add a show', function(done) {
+      chai.request(server)
+      .post('/api/v1/cities')
+      .send({
+        city: 'Dublin',
+        country : 'Ireland',
+        activities: ['Guiness Storehouse', 'Jameson Factory', 'Pheonix Park'],
+        places: ['The Temple Bar', 'The Old Storehouse', 'The Brazen Head']
+      })
+      .end(function(err, res) {
+        res.should.be.json; // jshint ignore:line
+        res.body.should.be.a('object');
+        res.body.should.have.property('city');
+        res.body.city.should.equal('Dublin');
+        res.body.should.have.property('country');
+        res.body.country.should.equal('Ireland');
+        res.body.should.have.property('activities');
+        res.body.activities[0].should.equal('Guiness Storehouse');
+        res.body.should.have.property('places');
+        res.body.places[0].should.equal('The Temple Bar');
+        done();
+      });
+    });
+  });
+
 });

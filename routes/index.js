@@ -42,4 +42,17 @@ router.get('/citiessearch', (req, res) => {
     })
 })
 
+router.post('/cities', (req, res) => {
+    queries.add(req.body)
+    .then(function(showID) {
+      return queries.getSingle(showID);
+    })
+    .then(function(show) {
+      res.json(show);
+    })
+    .catch(function(error) {
+      res.send(error);
+    });
+  });
+
 module.exports = router;
