@@ -3,8 +3,6 @@ const app = express()
 const path = require('path')
 const port = 3000
 const routes = require('./routes/index')
-
-const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 
 app.use(express.static('views'));
@@ -12,8 +10,7 @@ app.use(express.urlencoded());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1', routes)
 
