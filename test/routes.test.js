@@ -100,4 +100,27 @@ describe('API Routes', function() {
     });
   });
 
+  describe('PUT /api/v1/cities/:id', function() {
+    it('should update a city', function(done) {
+      chai.request(server)
+      .put('/api/v1/cities/1')
+      .send({
+        country: 'United Kingdom'
+      })
+      .end(function(err, res) {
+        res.should.have.status(200);
+        res.should.be.json; // jshint ignore:line
+        res.body.should.be.a('object');
+        res.body.should.have.property('city');
+        res.body.city.should.equal('London');
+        res.body.should.have.property('country');
+        res.body.country.should.equal('United Kingdom');
+        res.body.should.have.property('activities');
+        res.body.activities[0].should.equal('Watch Premier League football');
+        res.body.should.have.property('places');
+        res.body.places[0].should.equal('London Eye');
+        done();
+      });
+    });
+  });
 });

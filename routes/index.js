@@ -55,4 +55,32 @@ router.post('/cities', (req, res) => {
     });
   });
 
+router.put('/cities/:id', (req, res) => {
+    queries.update(req.params.id, req.body)
+    .then(function() {
+      return queries.getSingle(req.params.id);
+    })
+    .then(function(show) {
+      res.status(200).json(show);
+    })
+    .catch(function(error) {
+      res.send(error);
+    });
+  });
+  
+  router.delete('/cities/:id', function(req, res, next) {
+    queries.getSingle(req.params.id)
+    .then(function(show) {
+      queries.deleteItem(req.params.id)
+      .then(function() {
+        res.status(200).json(show);
+      })
+      .catch(function(error) {
+        next(error);
+      });
+    }).catch(function(error) {
+      next(error);
+    });
+  });
+  
 module.exports = router;
