@@ -16,9 +16,11 @@ router.get('/cities', (req, res) => {
     queries.getAll()
     .then(function(shows) {
       res.status(200).json(shows);
+      console.log(shows);
     })
     .catch(function(error) {
-      next(error);
+      res.send(error);
+      console.log(error);
     });
   });
 
@@ -26,9 +28,11 @@ router.get('/cities', (req, res) => {
     queries.getSingle(req.params.id)
     .then(function(cities) {
       res.status(200).json(cities);
+      console.log(shows);
     })
     .catch(function(error) {
-      next(error);
+      res.send(error);
+      console.log(error);
     });
   });
 
@@ -42,8 +46,8 @@ router.get('/citiessearch', (req, res) => {
         console.log(result);
     })
     .catch(function (error) {
-        console.log(error)
-        res.send(error.hint)
+        res.send(error.hint);
+        console.log(error);
     })
 })
 
