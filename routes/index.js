@@ -19,7 +19,7 @@ router.get('/cities', (req, res) => {
       console.log(shows);
     })
     .catch(function(error) {
-      res.send(error);
+      res.send(error.hint);
       console.log(error);
     });
   });
@@ -31,7 +31,7 @@ router.get('/cities', (req, res) => {
       console.log(shows);
     })
     .catch(function(error) {
-      res.send(error);
+      res.send(error.hint);
       console.log(error);
     });
   });
