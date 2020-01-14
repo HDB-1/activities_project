@@ -39,23 +39,15 @@ describe('API Routes', function() {
       res.should.have.status(200);
       res.should.be.json; // jshint ignore:line
       res.body.should.be.a('array');
-      res.body.length.should.equal(4);
+      res.body.length.should.equal(3);
       res.body[0].should.have.property('city');
       res.body[0].city.should.equal('London');
       res.body[0].should.have.property('country');
       res.body[0].country.should.equal('UK');
       res.body[0].should.have.property('activities');
-      res.body[0].activities.should.equal([
-        'Watch Premier League football',
-        'Watch cricket at Lords',
-        'Watch tennis at Wimbledon'
-        ]);
+      res.body[0].activities[0].should.equal('Watch Premier League football');
       res.body[0].should.have.property('places');
-      res.body[0].places.should.equal([
-        'London Eye',
-        'Big Ben',
-        'Westminster Abbey'
-        ]);
+      res.body[0].places[0].should.equal('London Eye');
       done();
       });
     });
