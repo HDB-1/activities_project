@@ -43,6 +43,7 @@ router.get('/citiessearch', (req, res) => {
 })
 
 router.post('/cities', (req, res) => {
+    console.log(req.body)
     queries.add(req.body)
     .then(function(showID) {
       return queries.getSingle(showID);

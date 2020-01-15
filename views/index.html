@@ -5,6 +5,16 @@
     <title>City Activities</title>
 </head>
 <body>
-    
+    <form method="POST" action="/api/v1/cities">
+        <label>City</label>
+        <input id="city" type="text" name="city"placeholder="City Name...">
+        <label>Country</label>
+        <input id="country" type="text" name="country" placeholder="Country...">
+        <label>Activities</label>
+        <input id="activities" type="text" name="activities" placeholder="Activity list...">
+        <label>Places</label>
+        <input id="places" type="text" name="places" placeholder="Locations list...">
+        <button type="submit" id="submitBtn">Submit!</button>
+    </form>
 </body>
 </html>
